@@ -60,6 +60,14 @@ g.drawRoundRect( 0, 0, SIZE, SIZE, 5 );
 };
 
 
+Square.prototype.remove = function()
+{
+this.removeClickEvent();
+
+G.STAGE.removeChild( this.shape );
+};
+
+
 window.Square = Square;
 
 }(window));

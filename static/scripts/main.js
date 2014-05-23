@@ -2,8 +2,7 @@ var G = {
     CANVAS: null,
     STAGE: null,
     MAP: [],
-    COLUMNS: 20,
-    LINES: 20,
+    SIZE: 20,
     COUNT_TIME: 0,
     UPDATE_TIME: 300,
     INIT_PHASE: true
@@ -19,13 +18,13 @@ G.CANVAS.height = 450;
 
 G.INIT_PHASE = true;
 
-for (var a = 0 ; a < G.COLUMNS ; a++)
+for (var column = 0 ; column < G.SIZE ; column++)
     {
-    G.MAP[ a ] = [];
+    G.MAP[ column ] = [];
 
-    for (var b = 0 ; b < G.LINES ; b++)
+    for (var line = 0 ; line < G.SIZE ; line++)
         {
-        G.MAP[ a ][ b ] = new Square( a, b );
+        G.MAP[ column ][ line ] = new Square( column, line );
         }
     }
 
@@ -35,15 +34,46 @@ createjs.Ticker.on( 'tick', tick );
 };
 
 
+function setGridSize( size )
+{
+clearGame();
+
+var column, line;
+
+    // clear the current map
+for (column = 0 ; column < G.SIZE ; column++)
+    {
+    for (line = 0 ; line < G.SIZE ; line++)
+        {
+        G.MAP[ column ][ line ].remove();
+        }
+    }
+
+G.MAP.length = 0;
+
+    // init. the map with the new size
+G.SIZE = size;
+
+for (column = 0 ; column < G.SIZE ; column++)
+    {
+    G.MAP[ column ] = [];
+
+    for (line = 0 ; line < G.SIZE ; line++)
+        {
+        G.MAP[ column ][ line ] = new Square( column, line );
+        }
+    }
+}
+
 
 
 function startGame()
 {
 G.INIT_PHASE = false;
 
-for (var column = 0 ; column < G.COLUMNS ; column++)
+for (var column = 0 ; column < G.SIZE ; column++)
     {
-    for (var line = 0 ; line < G.LINES ; line++)
+    for (var line = 0 ; line < G.SIZE ; line++)
         {
         G.MAP[ column ][ line ].removeClickEvent();
         }
@@ -55,9 +85,9 @@ function updateGame()
 {
 var change = [];
 
-for (var column = 0 ; column < G.COLUMNS ; column++)
+for (var column = 0 ; column < G.SIZE ; column++)
     {
-    for (var line = 0 ; line < G.LINES ; line++)
+    for (var line = 0 ; line < G.SIZE ; line++)
         {
         var square = G.MAP[ column ][ line ];
 
@@ -93,9 +123,9 @@ function clearGame()
 {
 G.INIT_PHASE = true;
 
-for (var column = 0 ; column < G.COLUMNS ; column++)
+for (var column = 0 ; column < G.SIZE ; column++)
     {
-    for (var line = 0 ; line < G.LINES ; line++)
+    for (var line = 0 ; line < G.SIZE ; line++)
         {
         var square = G.MAP[ column ][ line ];
 
@@ -129,14 +159,14 @@ if ( startLine < 0 )
 
 var endColumn = square.column + 1;
 
-if ( endColumn > G.COLUMNS - 1 )
+if ( endColumn > G.SIZE - 1 )
     {
     endColumn = square.column;
     }
 
 var endLine = square.line + 1;
 
-if ( endLine > G.LINES - 1 )
+if ( endLine > G.SIZE - 1 )
     {
     endLine = square.line;
     }

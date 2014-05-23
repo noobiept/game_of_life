@@ -29,6 +29,20 @@ reset.onclick = function()
     };
 
 
+var size = document.querySelector( '#size' );
+var sizeValue = document.querySelector( '#sizeValue' );
+
+sizeValue.innerHTML = G.SIZE;
+
+size.value = G.SIZE;
+size.onchange = function()
+    {
+    setGridSize( size.value );
+
+    sizeValue.innerHTML = size.value;
+    };
+
+
 START = start;
 };
 
