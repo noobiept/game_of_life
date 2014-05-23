@@ -5,7 +5,7 @@ var G = {
     COLUMNS: 20,
     LINES: 20,
     COUNT_TIME: 0,
-    UPDATE_TIME: 500,
+    UPDATE_TIME: 300,
     INIT_PHASE: true
 };
 
@@ -29,25 +29,7 @@ for (var a = 0 ; a < G.COLUMNS ; a++)
         }
     }
 
-
-var start = document.querySelector( '#start' );
-
-start.onclick = function()
-    {
-    if ( G.INIT_PHASE )
-        {
-        startGame();
-        }
-    };
-
-var reset = document.querySelector( '#reset' );
-
-reset.onclick = function()
-    {
-    clearGame();
-    };
-
-
+GameMenu.init();
 
 createjs.Ticker.on( 'tick', tick );
 };
@@ -121,6 +103,8 @@ for (var column = 0 ; column < G.COLUMNS ; column++)
         square.addClickEvent();
         }
     }
+
+GameMenu.reset();
 }
 
 
@@ -188,6 +172,7 @@ if ( !G.INIT_PHASE )
         {
         G.COUNT_TIME = 0;
 
+        GameMenu.update( event );
         updateGame();
         }
     }
