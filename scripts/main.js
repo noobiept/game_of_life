@@ -14,8 +14,8 @@ window.onload = function()
 G.CANVAS = document.querySelector( '#canvas' );
 G.STAGE = new createjs.Stage( G.CANVAS );
 
-G.CANVAS.width = 800;
-G.CANVAS.height = 600;
+G.CANVAS.width = 600;
+G.CANVAS.height = 450;
 
 G.INIT_PHASE = true;
 
@@ -39,6 +39,14 @@ start.onclick = function()
         startGame();
         }
     };
+
+var reset = document.querySelector( '#reset' );
+
+reset.onclick = function()
+    {
+    clearGame();
+    };
+
 
 
 createjs.Ticker.on( 'tick', tick );
@@ -95,6 +103,23 @@ for (var column = 0 ; column < G.COLUMNS ; column++)
 for (var a = 0 ; a < change.length ; a++)
     {
     change[ a ].square.setAlive( change[ a ].setAlive );
+    }
+}
+
+
+function clearGame()
+{
+G.INIT_PHASE = true;
+
+for (var column = 0 ; column < G.COLUMNS ; column++)
+    {
+    for (var line = 0 ; line < G.LINES ; line++)
+        {
+        var square = G.MAP[ column ][ line ];
+
+        square.setAlive( false );
+        square.addClickEvent();
+        }
     }
 }
 

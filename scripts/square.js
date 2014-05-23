@@ -4,15 +4,13 @@ var SIZE = 20;
 
 function Square( column, line )
 {
-var _this = this;
 var shape = new createjs.Shape();
-
-this.click_f = shape.on( 'click', function() { _this.setAlive( !_this.isAlive ) }, this );
 
 this.shape = shape;
 this.column = column;
 this.line = line;
 
+this.addClickEvent();
 this.setAlive( false );
 this.setPosition( column, line );
 
@@ -30,10 +28,19 @@ Square.prototype.removeClickEvent = function()
 this.shape.off( 'click', this.click_f );
 };
 
+Square.prototype.addClickEvent = function()
+{
+var _this = this;
+
+this.click_f = this.shape.on( 'click', function() { _this.setAlive( !_this.isAlive ) }, this );
+};
+
 
 Square.prototype.setAlive = function( yes )
 {
 var g = this.shape.graphics;
+
+g.clear();
 
 if ( yes )
     {
