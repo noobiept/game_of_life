@@ -32,7 +32,7 @@ for (var column = 0 ; column < G.SIZE ; column++)
 
 GameMenu.init();
 
-G.CANVAS.addEventListener( 'click', clickEvent );
+G.CANVAS.addEventListener( 'mousedown', clickEvent );
 
 createjs.Ticker.on( 'tick', tick );
 };
@@ -78,6 +78,11 @@ G.MAP.length = 0;
 
     // init. the map with the new size
 G.SIZE = size;
+
+var canvasSize = G.SIZE * Square.SIZE;
+
+G.CANVAS.width = canvasSize;
+G.CANVAS.height = canvasSize;
 
 for (column = 0 ; column < G.SIZE ; column++)
     {
