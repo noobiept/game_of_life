@@ -32,8 +32,31 @@ for (var column = 0 ; column < G.SIZE ; column++)
 
 GameMenu.init();
 
+G.CANVAS.addEventListener( 'click', clickEvent );
+
 createjs.Ticker.on( 'tick', tick );
 };
+
+
+function clickEvent( event )
+{
+if ( !G.INIT_PHASE )
+    {
+    return;
+    }
+
+var canvasRect = G.CANVAS.getBoundingClientRect();
+
+var x = event.pageX - canvasRect.left;
+var y = event.pageY - canvasRect.top;
+
+var column = Math.floor( x / Square.SIZE );
+var line = Math.floor( y / Square.SIZE );
+
+var square = G.MAP[ column ][ line ];
+
+square.setAlive( !square.isAlive );
+}
 
 
 function setGridSize( size )
@@ -73,13 +96,8 @@ function startGame()
 {
 G.INIT_PHASE = false;
 
-for (var column = 0 ; column < G.SIZE ; column++)
-    {
-    for (var line = 0 ; line < G.SIZE ; line++)
-        {
-        G.MAP[ column ][ line ].removeClickEvent();
-        }
-    }
+updateGame();
+GameMenu.update();
 }
 
 
@@ -132,7 +150,6 @@ for (var column = 0 ; column < G.SIZE ; column++)
         var square = G.MAP[ column ][ line ];
 
         square.setAlive( false );
-        square.addClickEvent();
         }
     }
 
@@ -204,7 +221,7 @@ if ( !G.INIT_PHASE )
         {
         G.COUNT_TIME = 0;
 
-        GameMenu.update( event );
+        GameMenu.update();
         updateGame();
         }
     }

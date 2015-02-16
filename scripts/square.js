@@ -8,7 +8,6 @@ this.shape = shape;
 this.column = column;
 this.line = line;
 
-this.addClickEvent();
 this.setAlive( false );
 this.setPosition( column, line );
 
@@ -22,18 +21,6 @@ Square.prototype.setPosition = function( column, line )
 {
 this.shape.x = column * Square.SIZE;
 this.shape.y = line * Square.SIZE;
-};
-
-Square.prototype.removeClickEvent = function()
-{
-this.shape.off( 'click', this.click_f );
-};
-
-Square.prototype.addClickEvent = function()
-{
-var _this = this;
-
-this.click_f = this.shape.on( 'click', function() { _this.setAlive( !_this.isAlive ) }, this );
 };
 
 
@@ -63,8 +50,6 @@ g.drawRoundRect( 0, 0, Square.SIZE, Square.SIZE, 5 );
 
 Square.prototype.remove = function()
 {
-this.removeClickEvent();
-
 G.STAGE.removeChild( this.shape );
 };
 
