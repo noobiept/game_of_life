@@ -1,0 +1,13 @@
+{
+    "basePath": "..",
+    "files":
+        [
+            "css/",
+            "libraries/"
+        ],
+    "extensions":
+        [
+            ".css",
+            ".js"
+        ]
+}
