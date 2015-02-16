@@ -10,11 +10,13 @@ var G = {
 
 window.onload = function()
 {
-G.CANVAS = document.querySelector( '#canvas' );
+G.CANVAS = document.querySelector( '#MainCanvas' );
 G.STAGE = new createjs.Stage( G.CANVAS );
 
-G.CANVAS.width = 600;
-G.CANVAS.height = 450;
+var canvasSize = G.SIZE * Square.SIZE;
+
+G.CANVAS.width = canvasSize;
+G.CANVAS.height = canvasSize;
 
 G.INIT_PHASE = true;
 

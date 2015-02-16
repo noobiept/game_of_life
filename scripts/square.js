@@ -1,7 +1,5 @@
 (function(window)
 {
-var SIZE = 20;
-
 function Square( column, line )
 {
 var shape = new createjs.Shape();
@@ -17,10 +15,13 @@ this.setPosition( column, line );
 G.STAGE.addChild( shape );
 }
 
+Square.SIZE = 20;
+
+
 Square.prototype.setPosition = function( column, line )
 {
-this.shape.x = column * SIZE;
-this.shape.y = line * SIZE;
+this.shape.x = column * Square.SIZE;
+this.shape.y = line * Square.SIZE;
 };
 
 Square.prototype.removeClickEvent = function()
@@ -56,7 +57,7 @@ else
     this.isAlive = false;
     }
 
-g.drawRoundRect( 0, 0, SIZE, SIZE, 5 );
+g.drawRoundRect( 0, 0, Square.SIZE, Square.SIZE, 5 );
 };
 
 

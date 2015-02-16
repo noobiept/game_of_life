@@ -11,7 +11,7 @@ var START_POSITION = 0;
 
 GameMenu.init = function()
 {
-var start = document.querySelector( '#start' );
+var start = document.querySelector( '#Start' );
 
 start.onclick = function()
     {
@@ -21,7 +21,7 @@ start.onclick = function()
         }
     };
 
-var reset = document.querySelector( '#reset' );
+var reset = document.querySelector( '#Reset' );
 
 reset.onclick = function()
     {
@@ -29,8 +29,8 @@ reset.onclick = function()
     };
 
 
-var size = document.querySelector( '#size' );
-var sizeValue = document.querySelector( '#sizeValue' );
+var size = document.querySelector( '#Size' );
+var sizeValue = document.querySelector( '#SizeValue' );
 
 sizeValue.innerHTML = G.SIZE;
 

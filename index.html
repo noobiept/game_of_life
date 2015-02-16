@@ -3,7 +3,7 @@
 <head>
     <title>Game of Life</title>
 
-    <script type="text/javascript" src="libraries/easeljs-0.7.1.min.js"></script>
+    <script type="text/javascript" src="libraries/easeljs-0.8.0.min.js"></script>
 
     <script type="text/javascript" src="scripts/square.js"></script>
     <script type="text/javascript" src="scripts/game_menu.js"></script>
@@ -13,14 +13,18 @@
 </head>
 <body>
 
-    <canvas id="canvas"></canvas>
+    <canvas id="MainCanvas"></canvas>
 
-    <div id="start" class="button">Start</div>
-    <div id="reset" class="button">Reset</div>
+    <div id="GameMenu">
+        <div id="Start" class="button">Start</div>
+        <div id="Reset" class="button">Reset</div>
+        <div id="SizeContainer">
+            <label for="Size">Grid size</label>
+            <input id="Size" type="range" min="10" max="20" step="1" />
+            <span id="SizeValue"></span>
+        </div>
 
-    <label for="size">Grid size</label>
-    <input id="size" type="range" min="10" max="20" step="1" />
-    <span id="sizeValue"></span>
+    </div>
 
 </body>
 </html>
