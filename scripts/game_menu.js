@@ -1,13 +1,14 @@
-(function(window)
-{
-function GameMenu()
-{
+/*global startGame, G, clearGame, setGridSize*/
+'use strict';
 
-}
+var GameMenu;
+(function(GameMenu) {
+
 
 var START = null;
 var START_TEXT = [ 'Working.', 'Working..', 'Working...' ];
 var START_POSITION = 0;
+
 
 GameMenu.init = function()
 {
@@ -59,12 +60,11 @@ if ( START_POSITION >= START_TEXT.length )
     }
 };
 
+
 GameMenu.reset = function()
 {
 START.innerHTML = 'Start';
 };
 
 
-window.GameMenu = GameMenu;
-
-}(window));
+})(GameMenu || (GameMenu = {}));

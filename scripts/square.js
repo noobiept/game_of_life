@@ -1,5 +1,7 @@
-(function(window)
-{
+/*global createjs, G*/
+'use strict';
+
+
 function Square( column, line )
 {
 var shape = new createjs.Shape();
@@ -52,8 +54,3 @@ Square.prototype.remove = function()
 {
 G.STAGE.removeChild( this.shape );
 };
-
-
-window.Square = Square;
-
-}(window));

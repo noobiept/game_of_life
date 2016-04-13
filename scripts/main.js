@@ -1,3 +1,7 @@
+/*global createjs, Square, GameMenu*/
+/*exported G, setGridSize, startGame, clearGame*/
+'use strict';
+
 var G = {
     CANVAS: null,
     STAGE: null,
