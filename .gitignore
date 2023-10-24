@@ -1,0 +1,6 @@
+/release/
+.DS_Store
+/info.txt
+.angular/
+node_modules/
+.vscode/

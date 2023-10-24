@@ -1,0 +1,11 @@
+<p>menu works!</p>
+<div>Size: {{ size }}</div>
+
+<input
+  type="range"
+  min="10"
+  max="20"
+  step="1"
+  value="{{ size }}"
+  (change)="setNewSize($event)"
+/>
