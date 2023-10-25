@@ -1,4 +1,7 @@
 <router-outlet></router-outlet>
 
-<app-canvas [size]="size"></app-canvas>
+<app-canvas
+  [size]="size"
+  (newCanvasEvent)="onCanvasChange($event)"
+></app-canvas>
 <app-menu (newSizeEvent)="updateSize($event)" [size]="size"></app-menu>
