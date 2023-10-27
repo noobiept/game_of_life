@@ -1,0 +1,26 @@
+name: Game of Life
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: '20.x'
+
+            - run: npm ci
+            - run: npm run format:check
+            - run: npm run lint
+            - run: npm run test
+            - run: npm run build
+
+            - uses: actions/upload-artifact@v3
+              with:
+                  name: game_of_life
+                  path: release/
