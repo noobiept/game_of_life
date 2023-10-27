@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   Input,
@@ -11,7 +12,7 @@ import {
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.css'],
 })
-export class CanvasComponent {
+export class CanvasComponent implements AfterViewInit {
   @ViewChild('canvas') canvas!: HTMLCanvasElement;
   @Input() size = 0;
   @Output() newCanvasEvent = new EventEmitter<HTMLCanvasElement>();

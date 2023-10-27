@@ -7,14 +7,14 @@ export type SquareArgs = {
 
 export class Square {
   shape: createjs.Shape;
-  isAlive: boolean = false;
+  isAlive = false;
   column: number;
   line: number;
 
   static readonly SIZE = 20; // pixel size of a square
 
   constructor({ column, line }: SquareArgs) {
-    var shape = new createjs.Shape();
+    const shape = new createjs.Shape();
 
     this.shape = shape;
     this.column = column;
@@ -32,7 +32,7 @@ export class Square {
   }
 
   setAlive(yes: boolean) {
-    var g = this.shape.graphics;
+    const g = this.shape.graphics;
 
     g.clear();
 

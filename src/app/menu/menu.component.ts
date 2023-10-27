@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent {
-  @Input() size: number = 0;
+  @Input() size = 0;
   @Output() newSizeEvent = new EventEmitter<number>();
 
   setNewSize(event: Event) {
