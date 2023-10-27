@@ -1,27 +1,22 @@
-body
-    {
+body {
     text-align: center;
-    }
+}
 
-.button
-    {
+.button {
     cursor: pointer;
     background-color: #c4edb8;
     width: 200px;
     text-align: center;
-    }
+}
 
-.button:hover
-    {
+.button:hover {
     background-color: #8aed7e;
-    }
+}
 
-#GameMenu > *
-    {
+#GameMenu > * {
     margin: auto;
-    }
+}
 
-#SizeContainer
-    {
+#SizeContainer {
     margin-top: 10px;
-    }
+}
