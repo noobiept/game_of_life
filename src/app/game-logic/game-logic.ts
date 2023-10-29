@@ -10,7 +10,7 @@ export class GameLogic {
     countTime = 0;
     updateTime = 300;
     map: Square[][] = [];
-    initPhase = true;
+    private initPhase = true;
     onGridChange: (map: Square[][]) => void;
 
     constructor({ size, onGridChange }: GameLogicArgs) {
@@ -85,6 +85,10 @@ export class GameLogic {
                 square.setAlive(false);
             }
         }
+    }
+
+    isRunning() {
+        return !this.initPhase;
     }
 
     onClick(square: Square) {

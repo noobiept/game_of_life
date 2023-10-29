@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class MenuComponent {
     @Input() size = 0;
+    @Input() running = false;
     @Output() newSizeEvent = new EventEmitter<number>();
     @Output() startGameEvent = new EventEmitter<void>();
     @Output() resetGameEvent = new EventEmitter<void>();

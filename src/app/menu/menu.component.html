@@ -1,4 +1,12 @@
-<button id="Start" class="button" (click)="startGame()">Start</button>
+<ng-container *ngIf="running; then isRunning; else notRunning"></ng-container>
+
+<ng-template #isRunning>
+    <div>Running...</div>
+</ng-template>
+<ng-template #notRunning>
+    <button id="Start" class="button" (click)="startGame()">Start</button>
+</ng-template>
+
 <button id="Reset" class="button" (click)="resetGame()">Reset</button>
 <div id="SizeContainer">
     <label for="Size">Grid size</label>
