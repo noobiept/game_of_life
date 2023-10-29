@@ -1,6 +1,6 @@
 import * as createjs from 'createjs-module'
 import { Component, ElementRef } from '@angular/core'
-import { Square } from './square/square'
+import { GameLogic } from './game-logic/game-logic'
 
 @Component({
     selector: 'app-root',
@@ -9,25 +9,23 @@ import { Square } from './square/square'
 })
 export class AppComponent {
     title = 'game_of_life'
-    size = 20
-    map: Square[][] = []
+    game = new GameLogic({
+        size: 20,
+        onGridChange: (map) => {
+            this.stage.removeAllChildren()
+
+            for (let column = 0; column < this.game.size; column++) {
+                for (let line = 0; line < this.game.size; line++) {
+                    this.stage.addChild(map[column][line].shape)
+                }
+            }
+        },
+    })
+
     stage!: createjs.Stage
 
     updateSize(newSize: number) {
-        this.size = newSize
-    }
-
-    initGrid() {
-        const size = this.size
-        for (let column = 0; column < size; column++) {
-            this.map[column] = []
-            for (let line = 0; line < size; line++) {
-                const square = new Square({ column, line })
-                this.map[column][line] = square
-
-                this.stage.addChild(square.shape)
-            }
-        }
+        this.game.updateGridSize(newSize)
     }
 
     onCanvasChange(canvasRef: HTMLCanvasElement) {
@@ -35,13 +33,23 @@ export class AppComponent {
             .nativeElement // TODO
 
         this.stage = new createjs.Stage(canvas)
-        this.initGrid()
+        this.game.initGrid()
 
         // TODO should clear if already initialized before
-        createjs.Ticker.on('tick', this.tick.bind(this))
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        createjs.Ticker.on('tick', this.tick.bind(this) as any)
     }
 
-    tick() {
+    startGame() {
+        this.game.startGame()
+    }
+
+    resetGame() {
+        this.game.clearGame()
+    }
+
+    tick(event: createjs.TickerEvent) {
+        this.game.tick(event)
         this.stage.update()
     }
 }

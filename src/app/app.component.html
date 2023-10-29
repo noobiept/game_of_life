@@ -1,7 +1,12 @@
 <router-outlet></router-outlet>
 
 <app-canvas
-    [size]="size"
+    [size]="game.size"
     (newCanvasEvent)="onCanvasChange($event)"
 ></app-canvas>
-<app-menu (newSizeEvent)="updateSize($event)" [size]="size"></app-menu>
+<app-menu
+    (newSizeEvent)="updateSize($event)"
+    (startGameEvent)="startGame()"
+    (resetGameEvent)="resetGame()"
+    [size]="game.size"
+></app-menu>
