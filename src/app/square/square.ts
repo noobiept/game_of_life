@@ -1,52 +1,52 @@
-import * as createjs from 'createjs-module'
+import * as createjs from 'createjs-module';
 
 export type SquareArgs = {
-    column: number
-    line: number
-}
+    column: number;
+    line: number;
+};
 
 export class Square {
-    shape: createjs.Shape
-    isAlive = false
-    column: number
-    line: number
+    shape: createjs.Shape;
+    isAlive = false;
+    column: number;
+    line: number;
 
-    static readonly SIZE = 20 // pixel size of a square
+    static readonly SIZE = 20; // pixel size of a square
 
     constructor({ column, line }: SquareArgs) {
-        const shape = new createjs.Shape()
+        const shape = new createjs.Shape();
 
-        this.shape = shape
-        this.column = column
-        this.line = line
+        this.shape = shape;
+        this.column = column;
+        this.line = line;
         this.shape.on('click', () => {
-            this.setAlive(!this.isAlive)
-        })
-        this.setAlive(false)
-        this.setPosition(column, line)
+            this.setAlive(!this.isAlive);
+        });
+        this.setAlive(false);
+        this.setPosition(column, line);
     }
 
     setPosition(column: number, line: number) {
-        this.shape.x = column * Square.SIZE
-        this.shape.y = line * Square.SIZE
+        this.shape.x = column * Square.SIZE;
+        this.shape.y = line * Square.SIZE;
     }
 
     setAlive(yes: boolean) {
-        const g = this.shape.graphics
+        const g = this.shape.graphics;
 
-        g.clear()
+        g.clear();
 
         if (yes) {
-            g.beginFill('black')
+            g.beginFill('black');
 
-            this.isAlive = true
+            this.isAlive = true;
         } else {
-            g.beginFill('rgb(243, 243, 243)')
+            g.beginFill('rgb(243, 243, 243)');
 
-            this.isAlive = false
+            this.isAlive = false;
         }
 
-        g.drawRoundRect(0, 0, Square.SIZE, Square.SIZE, 5)
+        g.drawRoundRect(0, 0, Square.SIZE, Square.SIZE, 5);
     }
 
     remove() {

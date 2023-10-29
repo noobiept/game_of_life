@@ -1,154 +1,154 @@
-import { Square } from '../square/square'
+import { Square } from '../square/square';
 
 export type GameLogicArgs = {
-    size: number
-    onGridChange: (map: Square[][]) => void
-}
+    size: number;
+    onGridChange: (map: Square[][]) => void;
+};
 
 export class GameLogic {
-    size: number
-    countTime = 0
-    updateTime = 300
-    map: Square[][] = []
-    initPhase = true
-    onGridChange: (map: Square[][]) => void
+    size: number;
+    countTime = 0;
+    updateTime = 300;
+    map: Square[][] = [];
+    initPhase = true;
+    onGridChange: (map: Square[][]) => void;
 
     constructor({ size, onGridChange }: GameLogicArgs) {
-        this.size = size
-        this.onGridChange = onGridChange
+        this.size = size;
+        this.onGridChange = onGridChange;
     }
 
     initGrid() {
-        const size = this.size
+        const size = this.size;
         for (let column = 0; column < size; column++) {
-            this.map[column] = []
+            this.map[column] = [];
             for (let line = 0; line < size; line++) {
-                const square = new Square({ column, line })
-                this.map[column][line] = square
+                const square = new Square({ column, line });
+                this.map[column][line] = square;
             }
         }
 
-        this.onGridChange(this.map)
+        this.onGridChange(this.map);
     }
 
     updateGridSize(newSize: number) {
-        const currentSize = this.size
+        const currentSize = this.size;
 
-        this.clearGame()
+        this.clearGame();
 
         // clear the current map
         for (let column = 0; column < currentSize; column++) {
             for (let line = 0; line < currentSize; line++) {
-                this.map[column][line].remove()
+                this.map[column][line].remove();
             }
         }
 
-        this.map.length = 0
+        this.map.length = 0;
 
         // init. the map with the new size
-        this.size = newSize
+        this.size = newSize;
 
-        this.initGrid()
+        this.initGrid();
     }
 
     startGame() {
-        this.initPhase = false
-        this.updateGame()
+        this.initPhase = false;
+        this.updateGame();
     }
 
     updateGame() {
-        const change = []
-        const size = this.size
+        const change = [];
+        const size = this.size;
 
         for (let column = 0; column < size; column++) {
             for (let line = 0; line < size; line++) {
-                const square = this.map[column][line]
+                const square = this.map[column][line];
 
-                const howMany = this.howManyAliveNeighbors(square)
+                const howMany = this.howManyAliveNeighbors(square);
 
                 if (square.isAlive) {
                     if (howMany <= 1 || howMany >= 4) {
-                        change.push({ square: square, setAlive: false })
+                        change.push({ square: square, setAlive: false });
                     }
                 } else {
                     if (howMany === 3) {
-                        change.push({ square: square, setAlive: true })
+                        change.push({ square: square, setAlive: true });
                     }
                 }
             }
         }
 
         for (let a = 0; a < change.length; a++) {
-            change[a].square.setAlive(change[a].setAlive)
+            change[a].square.setAlive(change[a].setAlive);
         }
     }
 
     clearGame() {
-        this.initPhase = true
+        this.initPhase = true;
 
-        const size = this.size
+        const size = this.size;
         for (let column = 0; column < size; column++) {
             for (let line = 0; line < size; line++) {
-                const square = this.map[column][line]
+                const square = this.map[column][line];
 
-                square.setAlive(false)
+                square.setAlive(false);
             }
         }
     }
 
     howManyAliveNeighbors(square: Square) {
-        const size = this.size
-        let howMany = 0
-        let startColumn = square.column - 1
+        const size = this.size;
+        let howMany = 0;
+        let startColumn = square.column - 1;
 
         if (startColumn < 0) {
-            startColumn = 0
+            startColumn = 0;
         }
 
-        let startLine = square.line - 1
+        let startLine = square.line - 1;
 
         if (startLine < 0) {
-            startLine = 0
+            startLine = 0;
         }
 
-        let endColumn = square.column + 1
+        let endColumn = square.column + 1;
 
         if (endColumn > size - 1) {
-            endColumn = square.column
+            endColumn = square.column;
         }
 
-        let endLine = square.line + 1
+        let endLine = square.line + 1;
 
         if (endLine > size - 1) {
-            endLine = square.line
+            endLine = square.line;
         }
 
         for (let column = startColumn; column <= endColumn; column++) {
             for (let line = startLine; line <= endLine; line++) {
-                const otherSquare = this.map[column][line]
+                const otherSquare = this.map[column][line];
 
                 if (otherSquare !== square) {
                     if (this.map[column][line].isAlive) {
-                        howMany++
+                        howMany++;
                     }
                 }
             }
         }
 
-        return howMany
+        return howMany;
     }
 
     tick(event: createjs.TickerEvent) {
         if (this.initPhase) {
-            return
+            return;
         }
 
-        this.countTime += event.delta
+        this.countTime += event.delta;
 
         if (this.countTime > this.updateTime) {
-            this.countTime = 0
+            this.countTime = 0;
 
-            this.updateGame()
+            this.updateGame();
         }
     }
 }

@@ -5,7 +5,7 @@ import {
     Input,
     Output,
     ViewChild,
-} from '@angular/core'
+} from '@angular/core';
 
 @Component({
     selector: 'app-canvas',
@@ -13,11 +13,11 @@ import {
     styleUrls: ['./canvas.component.css'],
 })
 export class CanvasComponent implements AfterViewInit {
-    @ViewChild('canvas') canvas!: HTMLCanvasElement
-    @Input() size = 0
-    @Output() newCanvasEvent = new EventEmitter<HTMLCanvasElement>()
+    @ViewChild('canvas') canvas!: HTMLCanvasElement;
+    @Input() size = 0;
+    @Output() newCanvasEvent = new EventEmitter<HTMLCanvasElement>();
 
     ngAfterViewInit() {
-        this.newCanvasEvent.emit(this.canvas)
+        this.newCanvasEvent.emit(this.canvas);
     }
 }
