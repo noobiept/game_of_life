@@ -1,6 +1,7 @@
 import * as createjs from 'createjs-module';
 import { Component, ElementRef } from '@angular/core';
 import { GameLogic } from './game-logic/game-logic';
+import { Square } from './square/square';
 
 @Component({
     selector: 'app-root',
@@ -8,7 +9,6 @@ import { GameLogic } from './game-logic/game-logic';
     styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-    title = 'game_of_life';
     game = new GameLogic({
         size: 20,
         onGridChange: (map) => {
@@ -36,6 +36,18 @@ export class AppComponent {
         this.game.initGrid();
 
         // TODO should clear if already initialized before
+        canvas.addEventListener('click', (event) => {
+            const x = event.offsetX;
+            const y = event.offsetY;
+
+            const column = Math.floor(x / Square.SIZE);
+            const line = Math.floor(y / Square.SIZE);
+
+            const square = this.game.map[column][line];
+
+            this.game.onClick(square);
+        });
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         createjs.Ticker.on('tick', this.tick.bind(this) as any);
     }

@@ -32,16 +32,7 @@ export class GameLogic {
     }
 
     updateGridSize(newSize: number) {
-        const currentSize = this.size;
-
         this.clearGame();
-
-        // clear the current map
-        for (let column = 0; column < currentSize; column++) {
-            for (let line = 0; line < currentSize; line++) {
-                this.map[column][line].remove();
-            }
-        }
 
         this.map.length = 0;
 
@@ -94,6 +85,14 @@ export class GameLogic {
                 square.setAlive(false);
             }
         }
+    }
+
+    onClick(square: Square) {
+        if (!this.initPhase) {
+            return;
+        }
+
+        square.setAlive(!square.isAlive);
     }
 
     howManyAliveNeighbors(square: Square) {

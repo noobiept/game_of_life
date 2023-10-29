@@ -19,9 +19,6 @@ export class Square {
         this.shape = shape;
         this.column = column;
         this.line = line;
-        this.shape.on('click', () => {
-            this.setAlive(!this.isAlive);
-        });
         this.setAlive(false);
         this.setPosition(column, line);
     }
@@ -47,10 +44,5 @@ export class Square {
         }
 
         g.drawRoundRect(0, 0, Square.SIZE, Square.SIZE, 5);
-    }
-
-    remove() {
-        // TODO
-        // G.STAGE.removeChild(this.shape);
     }
 }
