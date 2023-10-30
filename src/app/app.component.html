@@ -1,13 +1,15 @@
 <router-outlet></router-outlet>
 
-<app-canvas
-    [size]="game.size"
-    (newCanvasEvent)="onCanvasChange($event)"
-></app-canvas>
-<app-menu
-    (newSizeEvent)="updateSize($event)"
-    (startGameEvent)="startGame()"
-    (resetGameEvent)="resetGame()"
-    [size]="game.size"
-    [running]="game.isRunning()"
-></app-menu>
+<div id="Container">
+    <app-canvas
+        [size]="game.size"
+        (newCanvasEvent)="onCanvasChange($event)"
+    ></app-canvas>
+    <app-menu
+        (newSizeEvent)="updateSize($event)"
+        (startGameEvent)="startGame()"
+        (resetGameEvent)="resetGame()"
+        [size]="game.size"
+        [running]="game.isRunning()"
+    ></app-menu>
+</div>

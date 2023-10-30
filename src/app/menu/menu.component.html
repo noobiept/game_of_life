@@ -1,23 +1,32 @@
-<ng-container *ngIf="running; then isRunning; else notRunning"></ng-container>
+<div id="Menu">
+    <div id="Buttons">
+        <ng-container
+            *ngIf="running; then isRunning; else notRunning"
+        ></ng-container>
 
-<ng-template #isRunning>
-    <div>Running...</div>
-</ng-template>
-<ng-template #notRunning>
-    <button id="Start" class="button" (click)="startGame()">Start</button>
-</ng-template>
+        <ng-template #isRunning>
+            <div id="Running">Running...</div>
+        </ng-template>
+        <ng-template #notRunning>
+            <button id="Start" class="button" (click)="startGame()">
+                Start
+            </button>
+        </ng-template>
 
-<button id="Reset" class="button" (click)="resetGame()">Reset</button>
-<div id="SizeContainer">
-    <label for="Size">Grid size</label>
-    <input
-        id="Size"
-        type="range"
-        min="10"
-        max="20"
-        step="1"
-        value="{{ size }}"
-        (change)="setNewSize($event)"
-    />
-    <span id="SizeValue">{{ size }}</span>
+        <button id="Reset" class="button" (click)="resetGame()">Reset</button>
+    </div>
+
+    <div id="SizeContainer">
+        <label for="Size">Grid size</label>
+        <input
+            id="Size"
+            type="range"
+            min="10"
+            max="20"
+            step="1"
+            value="{{ size }}"
+            (change)="setNewSize($event)"
+        />
+        <span id="SizeValue">{{ size }}</span>
+    </div>
 </div>

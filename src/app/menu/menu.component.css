@@ -1,0 +1,44 @@
+#Menu {
+    margin: 8px;
+}
+
+#Buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+}
+
+#Running {
+    font-size: 12px;
+    width: 200px;
+    height: 18px;
+}
+
+button {
+    background-color: #c4edb8;
+    width: 200px;
+    height: 18px;
+    border: none;
+}
+
+button:hover {
+    background-color: #8aed7e;
+}
+
+#SizeContainer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+#Size {
+    vertical-align: middle;
+}
+
+#SizeValue {
+    color: #113d05;
+    font-weight: bold;
+}
